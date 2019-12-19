@@ -6,7 +6,6 @@ import { CustomNotifyService } from "./notifier-custom.service";
 })
 export class DefaultNotifyDirective {
     constructor(templateRef: TemplateRef<any>, customNotifyService: CustomNotifyService) {
-        customNotifyService.id = "foo"
         customNotifyService.setDefaultTemplate(templateRef);
     }
 }
