@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { NotifierModule, NotifierOptions } from 'angular-notifier';
 import { DefaultNotifyDirective } from "./defaultNotify.directive";
 import { TestComponent } from './test.component';
+import { CustomNotifyService } from './notifier-custom.service';
 //import { }
 
 /**
@@ -52,10 +53,19 @@ const customNotifierOptions: NotifierOptions = {
   }
 };
 
+@NgModule({})
+class SharedModule {
+  static forRoot() {
+    return {
+      ngModule: SharedModule,
+      providers: [ CustomNotifyService ]
+    }
+  }
+}
+
 @NgModule({
-  imports: [BrowserModule, FormsModule, NotifierModule.withConfig(customNotifierOptions)],
+  imports: [BrowserModule, FormsModule, NotifierModule.withConfig(customNotifierOptions), SharedModule.forRoot()],
   declarations: [AppComponent, DefaultNotifyDirective, TestComponent],
   bootstrap: [AppComponent],
-
 })
 export class AppModule { }
